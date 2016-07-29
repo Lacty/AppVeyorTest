@@ -1,17 +1,22 @@
 
 #include <iostream>
+#include <GLFW/glfw3.h>
 
-
-template<typename T>
-T func(T& src) {
-  std::cout << "&src = " << &src << std::endl;
-  src += 10;
-  return src;
-}
 
 int main() {
-  auto a = 0;
-  std::cout << "&a   = " << &a << std::endl;
-  func(a);
-  std::cout << "a = " << a << std::endl;
+  if (!glfwInit()) return -1;
+  
+  auto window = static_cast<GLFWwindow*>(glfwCreateWindow(600, 400, "AppVeyorTest", nullptr, nullptr));
+
+  glfwMakeContextCurrent(window);
+
+  while (!glfwWindowShouldClose(window)) {
+    glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    glfwSwapBuffers(window);
+    glfwPollEvents();
+  }
+
+  glfwTerminate();
 }
