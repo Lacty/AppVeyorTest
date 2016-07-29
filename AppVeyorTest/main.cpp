@@ -3,7 +3,7 @@
 
 
 template<typename T>
-void func(T& src) {
+T func(T& src) {
   std::cout << "&src = " << &src << std::endl;
   src += 10;
 }
